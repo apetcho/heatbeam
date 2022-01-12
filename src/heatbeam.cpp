@@ -70,6 +70,12 @@ void XPlot::setup(){
 }
 
 // ***
+void XPlot::movexy(int x, int y){
+    currx = x;
+    curry = y;
+}
+
+// ***
 Config::Config(){
     TLen = 100;
     tmax = 200;
