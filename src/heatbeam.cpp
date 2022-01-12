@@ -79,7 +79,7 @@ Heat::~Heat(){
 }
 
 // ***
-Heat::init(){
+void Heat::init(){
     auto N = cfg.TLen;
     auto M = static_cast<double>(N);
     for(int i=0; i < N; i++){
@@ -91,6 +91,19 @@ Heat::init(){
     for(int i=0; i < N; i++){
         auto j = static_cast<double>(i);
         T[i] = Ta*(M - j)/M + Tb * j/M;
+    }
+}
+
+
+// ***
+void Heat::run(){
+    auto N = cfg.TLen;
+    auto Kt = cfg.Kt;
+    auto dx = cfg.dx;
+    auto Te = cfg.Te;
+    const double kdx2 = Kt / dx / dx;
+    for(int i=1; i < N-1; i++){
+        T[i] = (kdx * (T[i+1] + T[i-1]) + A[i]*Te)/(A[i] + 2.0*kdx2);
     }
 }
 

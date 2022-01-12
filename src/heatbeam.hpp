@@ -100,7 +100,7 @@ public:
     void run();
 
     // result(float *t, Data&)
-    void diplayResult();
+    void diplayResult(ResultMode mode);
 
     // tempvar[]
 private:
