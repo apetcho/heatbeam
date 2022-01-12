@@ -1,2 +1,0 @@
-/Users/oriprox/Documents/sandbox/practice/cpp/heatbeam/build/CMakeFiles/edit_cache.dir
-/Users/oriprox/Documents/sandbox/practice/cpp/heatbeam/build/CMakeFiles/rebuild_cache.dir
