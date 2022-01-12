@@ -72,6 +72,8 @@ struct Config{
     double Te;
 
     Config();
+    Config(const Config& cfg);
+    Config& operator=(const Config& cfg);
 
     // 
     // void init(double *t, HeatData& data);
