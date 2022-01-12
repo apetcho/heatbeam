@@ -14,7 +14,6 @@ Config::Config(){
 }
 
 // ***
-/**
 void Config::read(){
     std::cout << "Enter Kt:\n>> ";
     std::cin >> Kt;
@@ -26,6 +25,6 @@ void Config::read(){
     std::cin >> Te;
     return;
 }
-*/
+
 
 } // namespace heat1d
