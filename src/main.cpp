@@ -12,7 +12,7 @@ int main(){
     heat.init();
     heat.run();
 
-    mode = heat1d::ResultMode::TEXT;
+    mode = heat1d::ResultMode::XPLOT;
     heat.displayResult(mode);
 
     return 0;

@@ -5,6 +5,7 @@
 #include<string>
 #include<cmath>
 #include<cstdlib>
+#include<vector>
 #include<X11/Xlib.h>
 #include<X11/Xutil.h>
 
@@ -109,8 +110,8 @@ public:
     // tempvar[]
 private:
     Config cfg;
-    double *T;
-    double *A;
+    std::vector<double> T;
+    std::vector<double> A;
     void step();
 
 public:

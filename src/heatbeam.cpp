@@ -146,40 +146,41 @@ Heat::Heat(){
     cfg.Te = 0.0;
     cfg.tmax = 0;
     cfg.Kt = 0.0;
-    T = nullptr;
-    A = nullptr;
+    T = {};
+    A = {};
 }
 
 // ***
 void Heat::configure(const Config& conf){
     cfg = Config(conf);
+    T = {};
+    A = {};
 }
 // ***
 Heat::Heat(const Config& conf){
     cfg = Config(conf);
-    T = new double[cfg.TLen];
-    A = new double[cfg.TLen];
+    T = {};
+    A = {};
 }
 
 // ***
 Heat::~Heat(){
-    if(T){ delete [] T; }
-    if(A){ delete [] A; }
+    T.clear();
+    A.clear();
 }
 
 // ***
 void Heat::init(){
     auto N = cfg.TLen;
     auto M = static_cast<double>(N);
-    for(int i=0; i < N; i++){
-        auto j = static_cast<double>(i);
-        A[i] = (j*j) /(M-1.0)/(M-1.0);
-    }
     auto Ta = cfg.Ta;
     auto Tb = cfg.Tb;
     for(int i=0; i < N; i++){
         auto j = static_cast<double>(i);
-        T[i] = Ta*(M - j)/M + Tb * j/M;
+        auto aval = (j*j) /(M-1.0)/(M-1.0);
+        auto tval = Ta*(M - j)/M + Tb * j/M;
+        A.push_back(aval);
+        T.push_back(tval);
     }
 }
 
