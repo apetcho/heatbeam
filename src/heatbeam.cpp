@@ -36,12 +36,9 @@ void XPlot::setup(){
     XEvent event;
     display = XOpenDisplay(NULL);
     font_info = XLoadQueryFont(display, "7x13");
-    XSetErrorHandler((XErrorHandler)[]()->int{
-        return xerror("Problem with X-Windows");
-    });
-    XSetIOErrorHandler((XIOErrorHandler)[]()->int{
-        return xerror("Problem with X-Windows");
-    });
+    
+    // XSetErrorHandler((XErrorHandler)xerror);
+    // XSetIOErrorHandler((XIOErrorHandler)xerror);
 
     screen = DefaultScreen(display);
     width = DisplayWidth(display, screen) - 100;
@@ -154,8 +151,12 @@ Heat::Heat(){
 }
 
 // ***
-Heat::Heat(const Config& config){
-    cfg = config;
+void Heat::configure(const Config& conf){
+    cfg = Config(conf);
+}
+// ***
+Heat::Heat(const Config& conf){
+    cfg = Config(conf);
     T = new double[cfg.TLen];
     A = new double[cfg.TLen];
 }
@@ -191,7 +192,7 @@ void Heat::run(){
     auto Te = cfg.Te;
     const double kdx2 = Kt / dx / dx;
     for(int i=1; i < N-1; i++){
-        T[i] = (kdx * (T[i+1] + T[i-1]) + A[i]*Te)/(A[i] + 2.0*kdx2);
+        T[i] = (kdx2 * (T[i+1] + T[i-1]) + A[i]*Te)/(A[i] + 2.0*kdx2);
     }
 }
 
