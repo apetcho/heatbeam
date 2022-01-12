@@ -84,6 +84,10 @@ void XPlot::linexy(int x, int y){
     curry = ynew;
 }
 
+// ***
+void XPlot::clear(){
+    XClearWindow(display, win);
+}
 
 // ***
 Config::Config(){

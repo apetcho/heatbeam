@@ -47,6 +47,7 @@ struct XPlot{
     void linexy(int x, int y);
 
     // reffecran() => reffscreen()
+    void clear();
 };
 
 // ---
