@@ -72,4 +72,10 @@ Heat::Heat(const Config& config){
     A = new double[cfg.TLen];
 }
 
+// ***
+Heat::~Heat(){
+    if(T){ delete [] T; }
+    if(A){ delete [] A; }
+}
+
 } // namespace heat1d
