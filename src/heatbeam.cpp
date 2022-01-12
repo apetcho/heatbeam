@@ -32,6 +32,44 @@ void XPlot::wait_for_click(bool flag){
 }
 
 // ***
+void XPlot::setup(){
+    XEvent event;
+    display = XOpenDisplay(NULL);
+    font_info = XLoadQueryFont(display, "7x13");
+    XSetErrorHandler((XErrorHandler)[]()->int{
+        return xerror("Problem with X-Windows");
+    });
+    XSetIOErrorHandler((XIOErrorHandler)[]()->int{
+        return xerror("Problem with X-Windows");
+    });
+
+    screen = DefaultScreen(display);
+    width = DisplayWidth(display, screen) - 100;
+    height = DisplayHeight(display, screen) - 160;
+    win = XCreateSimpleWindow(
+        display, RootWindow(display, screen),
+        50, 80, width, height, 4,
+        BlackPixel(display, screen), WhitePixel(display, screen));
+
+    size_hints.flags = PPosition | PSize;
+    size_hints.x = 0;
+    size_hints.y = 0;
+    size_hints.width = width;
+    size_hints.height = height;
+
+    XSetStandardProperties(display, win, "xplot",
+        NULL, 0, NULL, 0, &size_hints);
+    XSelectInput(display, win, ExposureMask | ButtonPressMask);
+    gc = XCreateGC(display, win, 0, NULL);
+    XSetFont(display, gc, font_info->fid);
+    XSetForeground(display, gc, BlackPixel(display, screen));
+    XMapWindow(display, win);
+    do{
+        XNextEvent(display, &event);
+    }while(event.type != Expose);
+}
+
+// ***
 Config::Config(){
     TLen = 100;
     tmax = 200;
