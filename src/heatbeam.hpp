@@ -102,6 +102,7 @@ public:
 
     // result(float *t, Data&)
     void displayResult(ResultMode mode);
+    void configure(const Config& config);
 
     // tempvar[]
 private:
