@@ -75,6 +75,8 @@ struct Config{
     Config(const Config& cfg);
     Config& operator=(const Config& cfg);
 
+    ~Config(){}
+
     // 
     // void init(double *t, HeatData& data);
     // void relax(double *t, HeatData& data);
