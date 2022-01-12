@@ -14,6 +14,17 @@ Config::Config(){
 }
 
 // ***
+Config::Config(const Config& cfg){
+    this->dx = cfg.dx;
+    this->Kt = cfg.Kt;
+    this->Ta = cfg.Ta;
+    this->Tb = cfg.Tb;
+    this->Te = cfg.Te;
+    this->TLen = cfg.TLen;
+    this->tmax = cfg.tmax;
+}
+
+// ***
 void Config::read(){
     std::cout << "Enter Kt:\n>> ";
     std::cin >> Kt;
@@ -37,6 +48,12 @@ Heat::Heat(){
     cfg.Kt = 0.0;
     T = nullptr;
     A = nullptr;
+}
+
+// ***
+Heat::Heat(const Config& config){
+    cfg = config;
+    T = new double[cfg.TLen];
 }
 
 } // namespace heat1d
