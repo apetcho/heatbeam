@@ -69,6 +69,7 @@ Heat::Heat(){
 Heat::Heat(const Config& config){
     cfg = config;
     T = new double[cfg.TLen];
+    A = new double[cfg.TLen];
 }
 
 } // namespace heat1d
