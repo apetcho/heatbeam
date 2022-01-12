@@ -11,10 +11,12 @@
 
 namespace heat1d{
 // ---
+/*
 int xerror(const std::string msg){
     std::cerr << msg << std::endl;
     return 1;
 }
+*/
 
 // ---
 struct XPlot{
