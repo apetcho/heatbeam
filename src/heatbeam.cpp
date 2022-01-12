@@ -76,6 +76,16 @@ void XPlot::movexy(int x, int y){
 }
 
 // ***
+void XPlot::linexy(int x, int y){
+    int xnew = x;
+    int ynew = y;
+    XDrawLine(display, win, gc, currx, curry, xnew, ynew);
+    currx = xnew;
+    curry = ynew;
+}
+
+
+// ***
 Config::Config(){
     TLen = 100;
     tmax = 200;
