@@ -26,5 +26,17 @@ void Config::read(){
     return;
 }
 
+//
+Heat::Heat(){
+    cfg.dx = 0.0;
+    cfg.TLen = 0;
+    cfg.Ta = 0.0;
+    cfg.Tb = 0.0;
+    cfg.Te = 0.0;
+    cfg.tmax = 0;
+    cfg.Kt = 0.0;
+    T = nullptr;
+    A = nullptr;
+}
 
 } // namespace heat1d
