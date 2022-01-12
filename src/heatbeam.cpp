@@ -25,6 +25,21 @@ Config::Config(const Config& cfg){
 }
 
 // ***
+Config& Config::operator=(const Config& cfg){
+    if(this != &cfg){
+        this->dx = cfg.dx;
+        this->Kt = cfg.Kt;
+        this->Ta = cfg.Ta;
+        this->Tb = cfg.Tb;
+        this->Te = cfg.Te;
+        this->TLen = cfg.TLen;
+        this->tmax = cfg.tmax;
+    }
+
+    return *this;
+}
+
+// ***
 void Config::read(){
     std::cout << "Enter Kt:\n>> ";
     std::cin >> Kt;
