@@ -78,4 +78,20 @@ Heat::~Heat(){
     if(A){ delete [] A; }
 }
 
+// ***
+Heat::init(){
+    auto N = cfg.TLen;
+    auto M = static_cast<double>(N);
+    for(int i=0; i < N; i++){
+        auto j = static_cast<double>(i);
+        A[i] = (j*j) /(M-1.0)/(M-1.0);
+    }
+    auto Ta = cfg.Ta;
+    auto Tb = cfg.Tb;
+    for(int i=0; i < N; i++){
+        auto j = static_cast<double>(i);
+        T[i] = Ta*(M - j)/M + Tb * j/M;
+    }
+}
+
 } // namespace heat1d
