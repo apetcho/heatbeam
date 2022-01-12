@@ -185,7 +185,14 @@ void Heat::init(){
 
 
 // ***
-void Heat::run(){
+void Heat::run(int tmax){
+    this->cfg.tmax = tmax;
+    for(int i=0; i < cfg.tmax; i++){
+        step();
+    }
+}
+
+void Heat::step(){
     auto N = cfg.TLen;
     auto Kt = cfg.Kt;
     auto dx = cfg.dx;

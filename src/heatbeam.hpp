@@ -98,7 +98,7 @@ public:
     
     // init(float *t, Data&)
     // relax(float *t, Data&)
-    void run();
+    void run(int tmax = 200);
 
     // result(float *t, Data&)
     void displayResult(ResultMode mode);
@@ -109,6 +109,9 @@ private:
     Config cfg;
     double *T;
     double *A;
+    void step();
+
+public:
     void init(); // initialize A and T
 };
 
