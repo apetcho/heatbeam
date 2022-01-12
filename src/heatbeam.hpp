@@ -87,7 +87,7 @@ public:
     // M = 100
     // dx = 0.1
     // JMAX = 200
-    Heat();
+    Heat() = delete;
     Heat(const Config& config);
     ~Heat();
     
