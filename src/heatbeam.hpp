@@ -100,6 +100,7 @@ public:
 
     // tempvar[]
 private:
+    Config cfg;
     double *T;
     double *A;
     void init(); // initialize A and T
