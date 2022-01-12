@@ -1,4 +1,5 @@
 #include "heatbeam.hpp"
+#include<iostream>
 
 namespace heat1d{
 // ***
@@ -106,5 +107,26 @@ void Heat::run(){
         T[i] = (kdx * (T[i+1] + T[i-1]) + A[i]*Te)/(A[i] + 2.0*kdx2);
     }
 }
+
+// ***
+void Heat::diplayResult(ResultMode mode){
+    if(mode == ResultMode::XPLOT){
+        XPlot plot;
+        plot.setup();
+        plot.movexy(0, (int)T[0]);
+        for(int i=1; i < cfg.TLen; i++){
+            plot.linexy(i, (int)T[i]);
+        }
+        plot.wait_for_click(true);
+        plot.close();
+    }else if(mode == ResultMode::TEXT){
+        for(int i=0; i < cfg.TLen; i++){
+            std::cout << T[i] << std::endl;
+        }
+    }
+
+    return;
+}
+
 
 } // namespace heat1d
