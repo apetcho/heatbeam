@@ -1,5 +1,7 @@
 #include "heatbeam.hpp"
 #include<iostream>
+#include<cstring>
+
 
 namespace heat1d{
 // ***
@@ -7,6 +9,26 @@ void XPlot::close(){
     XUnloadFont(display, font_info->fid);
     XFreeGC(display, gc);
     XCloseDisplay(display);
+}
+
+// ***
+void XPlot::wait_for_click(bool flag){
+    char message[] = "Click to continue...";
+    char values[256];
+    XEvent event;
+
+    if(flag){
+        XDrawString(display, win, gc,
+            5, 20, message, strlen(message));
+
+        do{
+            XNextEvent(display, &event);
+        }while(event.type != ButtonPress && event.type != KeyPress);
+        XCheckMaskEvent(display, ButtonPressMask, &event);
+        if(event.type == ButtonPress){
+            XFlush(display);
+        }
+    }
 }
 
 // ***
