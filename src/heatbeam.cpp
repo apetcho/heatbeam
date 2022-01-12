@@ -3,6 +3,13 @@
 
 namespace heat1d{
 // ***
+void XPlot::close(){
+    XUnloadFont(display, font_info->fid);
+    XFreeGC(display, gc);
+    XCloseDisplay(display);
+}
+
+// ***
 Config::Config(){
     TLen = 100;
     tmax = 200;
@@ -109,7 +116,7 @@ void Heat::run(){
 }
 
 // ***
-void Heat::diplayResult(ResultMode mode){
+void Heat::displayResult(ResultMode mode){
     if(mode == ResultMode::XPLOT){
         XPlot plot;
         plot.setup();
